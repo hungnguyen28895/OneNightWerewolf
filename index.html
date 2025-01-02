@@ -198,13 +198,11 @@
     let isStopped = false;
 
     function playSelected() {
-      // Reset trạng thái
       isStopped = false;
 
       const firstSong = { src: '1-di-ngu.mp3', delay: 5 };
       const lastSong = { src: '11-thuc-day.mp3', delay: 0 };
 
-      // // Lấy bài hát từ radio
       // const selectedRadio = document.querySelector('input[name="radioSongs"]:checked');
       // const radioSong = selectedRadio
       //   ? [{
@@ -216,7 +214,6 @@
       //     }]
       //   : null;
 
-      // Lấy bài hát từ checkbox
       const selectedCheckboxes = document.querySelectorAll('#songList input[type="checkbox"]:checked');
       const checkboxSongs = Array.from(selectedCheckboxes).flatMap((checkbox) => [
       {
@@ -229,7 +226,6 @@
       },
     ]);
 
-      // Tạo danh sách phát
       playlist = [firstSong, ...checkboxSongs, lastSong].filter((song) => song !== null);
 
       if (!playlist.length) {
@@ -265,17 +261,14 @@
       audioPlayer.currentTime = 0;
     }
 
-    // Tự động lưu trạng thái
     function savePlaylist() {
       const selectedRadio = document.querySelector('input[name="radioSongs"]:checked')?.id || null;
       const delays = {};
 
-      // Lưu radio delays
       if (selectedRadio) {
         delays[selectedRadio] = document.getElementById(`delay${selectedRadio}`).value || "0";
       }
 
-      // Lưu checkbox delays
       document.querySelectorAll('#songList input[type="checkbox"]').forEach((checkbox) => {
         delays[checkbox.id] = document.getElementById(`delay${checkbox.id}`).value || "0";
       });
@@ -300,30 +293,25 @@
 
       const { selectedRadio, delays, selectedCheckboxes } = JSON.parse(data);
 
-      // Khôi phục radio
       if (selectedRadio) {
         document.getElementById(selectedRadio).checked = true;
       }
 
-      // Khôi phục checkbox
       selectedCheckboxes.forEach((id) => {
         const checkbox = document.getElementById(id);
         if (checkbox) checkbox.checked = true;
       });
 
-      // Khôi phục delay
       Object.keys(delays).forEach((id) => {
         const input = document.getElementById(`delay${id}`);
         if (input) input.value = delays[id];
       });
     }
 
-    // Tự động lưu khi thay đổi input
     document.querySelectorAll('input').forEach((input) => {
       input.addEventListener('change', savePlaylist);
     });
 
-    // Tải danh sách phát khi trang được tải
     loadPlaylist();
   </script>
 </body>
