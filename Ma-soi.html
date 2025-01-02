@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MA SÓI 1 ĐÊM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .container {
+      margin-top: 50px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 24px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    label {
+      margin-left: 5px;
+      flex: 1;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .stop {
+      background-color: #f44336;
+      color: white;
+    }
+    .play {
+      background-color: #4caf50;
+      color: white;
+    }
+    input[type="number"], input[type="radio"], input[type="checkbox"] {
+      margin-left: 10px;
+    }
+    .delay-input {
+      width: 60px;
+    }
+  
+    /* Media query for mobile devices */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        margin-top: 10%;
+        padding: 10px;
+      }
+      button {
+        width: 100%;
+        margin: 5px 0;
+      }
+      li {
+        /* flex-direction: column; */
+        align-items: flex-start;
+      }
+      .delay-input {
+        width: 25%;
+        margin-top: 5px;
+      }
+      label {
+        margin-left: 0;
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MA SÓI 1 ĐÊM</h1>
+    <ul id="songList">
+      <!-- Radio buttons -->
+      <!-- <li>
+        <div>
+          <input type="radio" name="radioSongs" value="2-nhan-ban.mp3" id="Radio1">
+          <label for="Radio1">Nhân bản</label>
+        </div>
+        <input type="number" class="delay-input" id="delayRadio1" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="radio" name="radioSongs" value="3-phan-boi.mp3" id="Radio2">
+          <label for="Radio2">Phản bội</label>
+        </div>
+        <input type="number" class="delay-input" id="delayRadio2" placeholder="Delay (s)" min="0">
+      </li> -->
+
+      <!-- Checkboxes -->
+      <li>
+        <div>
+          <input type="checkbox" value="2-nhan-ban.mp3" id="Checkbox9">
+          <label for="Checkbox9">Nhân bản</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox9" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="3-phan-boi.mp3" id="Checkbox10">
+          <label for="Checkbox10">Phản bội</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox10" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="4-Soi.mp3" id="Checkbox1" checked="true" disabled>
+          <label for="Checkbox1">Sói</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox1" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="12-sinh-doi.mp3" id="Checkbox2">
+          <label for="Checkbox2">Sinh Đôi</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox2" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="5-tien-tri.mp3" id="Checkbox3">
+          <label for="Checkbox3">Tiên Tri</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox3" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="6-trom.mp3" id="Checkbox4">
+          <label for="Checkbox4">Kẻ Trộm</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox4" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="7-pha-hoai.mp3" id="Checkbox5">
+          <label for="Checkbox5">Phá hoại</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox5" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="8-say-ruou.mp3" id="Checkbox6">
+          <label for="Checkbox6">Say Rượu</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox6" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="10-dan-thuong.mp3" id="Checkbox8">
+          <label for="Checkbox8">Dân Thường</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox8" placeholder="Delay (s)" min="0">
+      </li>
+      <li>
+        <div>
+          <input type="checkbox" value="9-mat-ngu.mp3" id="Checkbox7">
+          <label for="Checkbox7">Mất Ngủ</label>
+        </div>
+        <input type="number" class="delay-input" id="delayCheckbox7" placeholder="Delay (s)" min="0">
+      </li>
+    </ul>
+    <div>
+      <button class="play" onclick="playSelected()">Phát</button>
+      <button class="stop" onclick="stopPlaylist()">Dừng</button>
+    </div>
+    <audio id="audioPlayer"></audio>
+  </div>
+
+  <script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    let playlist = [];
+    let currentSongIndex = 0;
+    let isStopped = false;
+
+    function playSelected() {
+      // Reset trạng thái
+      isStopped = false;
+
+      const firstSong = { src: '1-di-ngu.mp3', delay: 5 };
+      const lastSong = { src: '11-thuc-day.mp3', delay: 0 };
+
+      // // Lấy bài hát từ radio
+      // const selectedRadio = document.querySelector('input[name="radioSongs"]:checked');
+      // const radioSong = selectedRadio
+      //   ? [{
+      //       src: selectedRadio.value,
+      //       delay: parseInt(document.getElementById(`delay${selectedRadio.id}`).value) * 1000 || 0,
+      //     }, {
+      //       src: `ngu-${selectedRadio.value}`,
+      //       delay: 0,
+      //     }]
+      //   : null;
+
+      // Lấy bài hát từ checkbox
+      const selectedCheckboxes = document.querySelectorAll('#songList input[type="checkbox"]:checked');
+      const checkboxSongs = Array.from(selectedCheckboxes).flatMap((checkbox) => [
+      {
+        src: checkbox.value,
+        delay: parseInt(document.getElementById(`delay${checkbox.id}`).value) * 1000 || 0,
+      },
+      {
+        src: `ngu-${checkbox.value}`,
+        delay: 0,
+      },
+    ]);
+
+      // Tạo danh sách phát
+      playlist = [firstSong, ...checkboxSongs, lastSong].filter((song) => song !== null);
+
+      if (!playlist.length) {
+        alert('Vui lòng chọn ít nhất một bài hát!');
+        return;
+      }
+
+      currentSongIndex = 0;
+      playSong();
+    }
+
+    function playSong() {
+      if (currentSongIndex >= playlist.length || isStopped) {
+        alert('Danh sách phát đã kết thúc hoặc bị dừng.');
+        return;
+      }
+
+      const currentSong = playlist[currentSongIndex];
+      audioPlayer.src = currentSong.src;
+      audioPlayer.play();
+
+      audioPlayer.onended = () => {
+        setTimeout(() => {
+          currentSongIndex++;
+          playSong();
+        }, currentSong.delay);
+      };
+    }
+
+    function stopPlaylist() {
+      isStopped = true;
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+    }
+
+    // Tự động lưu trạng thái
+    function savePlaylist() {
+      const selectedRadio = document.querySelector('input[name="radioSongs"]:checked')?.id || null;
+      const delays = {};
+
+      // Lưu radio delays
+      if (selectedRadio) {
+        delays[selectedRadio] = document.getElementById(`delay${selectedRadio}`).value || "0";
+      }
+
+      // Lưu checkbox delays
+      document.querySelectorAll('#songList input[type="checkbox"]').forEach((checkbox) => {
+        delays[checkbox.id] = document.getElementById(`delay${checkbox.id}`).value || "0";
+      });
+
+      const selectedCheckboxes = Array.from(document.querySelectorAll('#songList input[type="checkbox"]:checked')).map(
+        (checkbox) => checkbox.id
+      );
+
+      localStorage.setItem(
+        'playlist',
+        JSON.stringify({
+          selectedRadio,
+          delays,
+          selectedCheckboxes,
+        })
+      );
+    }
+
+    function loadPlaylist() {
+      const data = localStorage.getItem('playlist');
+      if (!data) return;
+
+      const { selectedRadio, delays, selectedCheckboxes } = JSON.parse(data);
+
+      // Khôi phục radio
+      if (selectedRadio) {
+        document.getElementById(selectedRadio).checked = true;
+      }
+
+      // Khôi phục checkbox
+      selectedCheckboxes.forEach((id) => {
+        const checkbox = document.getElementById(id);
+        if (checkbox) checkbox.checked = true;
+      });
+
+      // Khôi phục delay
+      Object.keys(delays).forEach((id) => {
+        const input = document.getElementById(`delay${id}`);
+        if (input) input.value = delays[id];
+      });
+    }
+
+    // Tự động lưu khi thay đổi input
+    document.querySelectorAll('input').forEach((input) => {
+      input.addEventListener('change', savePlaylist);
+    });
+
+    // Tải danh sách phát khi trang được tải
+    loadPlaylist();
+  </script>
+</body>
+</html>
