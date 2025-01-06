@@ -185,7 +185,7 @@
       </li>
     </ul>
     <div>
-      <button class="play" onclick="playSelected()">Phát</button>
+      <button class="play" onclick="playSelected()">Chơi</button>
       <button class="stop" onclick="stopPlaylist()">Dừng</button>
     </div>
     <audio id="audioPlayer"></audio>
@@ -200,7 +200,7 @@
     function playSelected() {
       isStopped = false;
 
-      const firstSong = { src: '1-di-ngu.mp3', delay: 5 };
+      const firstSong = { src: '1-di-ngu.mp3', delay: 5000 };
       const lastSong = { src: '11-thuc-day.mp3', delay: 0 };
 
       // const selectedRadio = document.querySelector('input[name="radioSongs"]:checked');
