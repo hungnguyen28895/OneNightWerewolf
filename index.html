@@ -1,93 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MA SÓI 1 ĐÊM</title>
   <style>
+    :root {
+      --primary-color: #4caf50;
+      --danger-color: #f44336;
+      --background-color: #f4f4f9;
+      --card-color: #fff;
+      --text-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+    
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #f4f4f9;
-      color: #333;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
     }
+    
     .container {
       margin-top: 50px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      background: var(--card-color);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--shadow-color);
       width: 90%;
-      max-width: 400px;
+      max-width: 450px;
+      transition: all 0.3s ease;
     }
+    
     h1 {
       text-align: center;
-      font-size: 24px;
+      font-size: 28px;
+      margin-bottom: 24px;
+      color: var(--primary-color);
     }
-    ul {
+    
+    .role-list {
       list-style: none;
       padding: 0;
     }
-    li {
+    
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 8px;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+    
+    .role-header-name {
+      flex: 1;
+    }
+    
+    .role-header-delay {
+      width: 70px;
+      text-align: center;
+    }
+    
+    .role-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      padding: 12px 8px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      transition: background-color 0.2s;
     }
-    label {
-      margin-left: 5px;
+    
+    .role-item:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .role-label {
+      display: flex;
+      align-items: center;
       flex: 1;
+      cursor: pointer;
     }
-    button {
-      margin: 10px 5px;
-      padding: 10px 20px;
+    
+    .role-label input[type="checkbox"] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .delay-input {
+      width: 70px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    
+    .btn {
+      flex: 1;
+      margin: 0 5px;
+      padding: 12px 20px;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
       border: none;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    
+    .btn:active {
+      transform: scale(0.98);
+    }
+    
+    .btn-stop {
+      background-color: var(--danger-color);
+      color: white;
+    }
+    
+    .btn-stop:hover {
+      background-color: #d32f2f;
+    }
+    
+    .btn-play {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-play:hover {
+      background-color: #388e3c;
+    }
+    
+    .status-indicator {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 10px;
       border-radius: 5px;
+      background-color: #e0f7fa;
+      font-weight: 500;
     }
-    .stop {
-      background-color: #f44336;
-      color: white;
+    
+    .now-playing {
+      animation: pulse 1.5s infinite;
     }
-    .play {
-      background-color: #4caf50;
-      color: white;
+    
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
     }
-    input[type="number"], input[type="radio"], input[type="checkbox"] {
-      margin-left: 10px;
-    }
-    .delay-input {
-      width: 60px;
-    }
-  
+    
     /* Media query for mobile devices */
     @media (max-width: 600px) {
       .container {
         width: 90%;
         margin-top: 10%;
-        padding: 10px;
+        padding: 15px;
       }
-      button {
+      
+      .button-group {
+        flex-direction: column;
+      }
+      
+      .btn {
         width: 100%;
         margin: 5px 0;
       }
-      li {
-        /* flex-direction: column; */
-        align-items: flex-start;
+      
+      .role-item {
+        padding: 8px 4px;
       }
+      
       .delay-input {
-        width: 25%;
-        margin-top: 5px;
-      }
-      label {
-        margin-left: 0;
-        margin-top: 5px;
+        width: 60px;
+        padding: 6px;
       }
     }
   </style>
@@ -95,224 +193,340 @@
 <body>
   <div class="container">
     <h1>MA SÓI 1 ĐÊM</h1>
-    <ul id="songList">
-      <!-- Radio buttons -->
-      <!-- <li>
-        <div>
-          <input type="radio" name="radioSongs" value="2-nhan-ban.mp3" id="Radio1">
-          <label for="Radio1">Nhân bản</label>
-        </div>
-        <input type="number" class="delay-input" id="delayRadio1" placeholder="Delay (s)" min="0">
+    
+    <div id="statusIndicator" class="status-indicator">
+      Trạng thái: <span id="currentRoleName">Chưa bắt đầu</span>
+    </div>
+    
+    <div class="role-header">
+      <div class="role-header-name">Vai trò</div>
+      <div class="role-header-delay">Delay</div>
+    </div>
+    
+    <ul class="role-list" id="roleList">
+      <li class="role-item">
+        <label class="role-label" for="roleNhanBan">
+          <input type="checkbox" value="2-nhan-ban.mp3" id="roleNhanBan">
+          Nhân bản
+        </label>
+        <input type="number" class="delay-input" id="delayRoleNhanBan" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="radio" name="radioSongs" value="3-phan-boi.mp3" id="Radio2">
-          <label for="Radio2">Phản bội</label>
-        </div>
-        <input type="number" class="delay-input" id="delayRadio2" placeholder="Delay (s)" min="0">
-      </li> -->
-
-      <!-- Checkboxes -->
-      <li>
-        <div>
-          <input type="checkbox" value="2-nhan-ban.mp3" id="Checkbox9">
-          <label for="Checkbox9">Nhân bản</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox9" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="rolePhanBoi">
+          <input type="checkbox" value="3-phan-boi.mp3" id="rolePhanBoi">
+          Phản bội
+        </label>
+        <input type="number" class="delay-input" id="delayRolePhanBoi" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="3-phan-boi.mp3" id="Checkbox10">
-          <label for="Checkbox10">Phản bội</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox10" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleSoi">
+          <input type="checkbox" value="4-Soi.mp3" id="roleSoi" checked disabled>
+          Sói
+        </label>
+        <input type="number" class="delay-input" id="delayRoleSoi" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="4-Soi.mp3" id="Checkbox1" checked="true" disabled>
-          <label for="Checkbox1">Sói</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox1" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleSinhDoi">
+          <input type="checkbox" value="12-sinh-doi.mp3" id="roleSinhDoi">
+          Sinh Đôi
+        </label>
+        <input type="number" class="delay-input" id="delayRoleSinhDoi" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="12-sinh-doi.mp3" id="Checkbox2">
-          <label for="Checkbox2">Sinh Đôi</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox2" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleTienTri">
+          <input type="checkbox" value="5-tien-tri.mp3" id="roleTienTri">
+          Tiên Tri
+        </label>
+        <input type="number" class="delay-input" id="delayRoleTienTri" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="5-tien-tri.mp3" id="Checkbox3">
-          <label for="Checkbox3">Tiên Tri</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox3" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleTrom">
+          <input type="checkbox" value="6-trom.mp3" id="roleTrom">
+          Kẻ Trộm
+        </label>
+        <input type="number" class="delay-input" id="delayRoleTrom" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="6-trom.mp3" id="Checkbox4">
-          <label for="Checkbox4">Kẻ Trộm</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox4" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="rolePhaHoai">
+          <input type="checkbox" value="7-pha-hoai.mp3" id="rolePhaHoai">
+          Phá hoại
+        </label>
+        <input type="number" class="delay-input" id="delayRolePhaHoai" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="7-pha-hoai.mp3" id="Checkbox5">
-          <label for="Checkbox5">Phá hoại</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox5" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleSayRuou">
+          <input type="checkbox" value="8-say-ruou.mp3" id="roleSayRuou">
+          Say Rượu
+        </label>
+        <input type="number" class="delay-input" id="delayRoleSayRuou" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="8-say-ruou.mp3" id="Checkbox6">
-          <label for="Checkbox6">Say Rượu</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox6" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleDanThuong">
+          <input type="checkbox" value="10-dan-thuong.mp3" id="roleDanThuong">
+          Dân Thường
+        </label>
+        <input type="number" class="delay-input" id="delayRoleDanThuong" placeholder="Giây" min="0">
       </li>
-      <li>
-        <div>
-          <input type="checkbox" value="10-dan-thuong.mp3" id="Checkbox8">
-          <label for="Checkbox8">Dân Thường</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox8" placeholder="Delay (s)" min="0">
-      </li>
-      <li>
-        <div>
-          <input type="checkbox" value="9-mat-ngu.mp3" id="Checkbox7">
-          <label for="Checkbox7">Mất Ngủ</label>
-        </div>
-        <input type="number" class="delay-input" id="delayCheckbox7" placeholder="Delay (s)" min="0">
+      
+      <li class="role-item">
+        <label class="role-label" for="roleMatNgu">
+          <input type="checkbox" value="9-mat-ngu.mp3" id="roleMatNgu">
+          Mất Ngủ
+        </label>
+        <input type="number" class="delay-input" id="delayRoleMatNgu" placeholder="Giây" min="0">
       </li>
     </ul>
-    <div>
-      <button class="play" onclick="playSelected()">Chơi</button>
-      <button class="stop" onclick="stopPlaylist()">Dừng</button>
+    
+    <div class="button-group">
+      <button class="btn btn-play" id="playButton" onclick="playSelected()">Chơi</button>
+      <button class="btn btn-stop" id="stopButton" onclick="stopPlaylist()">Dừng</button>
     </div>
+    
     <audio id="audioPlayer"></audio>
   </div>
 
   <script>
+    // Global variables declaration
     const audioPlayer = document.getElementById('audioPlayer');
+    const statusIndicator = document.getElementById('statusIndicator');
+    const currentRoleName = document.getElementById('currentRoleName');
+    const playButton = document.getElementById('playButton');
+    const stopButton = document.getElementById('stopButton');
+    
     let playlist = [];
     let currentSongIndex = 0;
-    let isStopped = false;
-
+    let isPlaying = false;
+    
+    // Mapping audio files to display names
+    const roleNameMap = {
+      '1-di-ngu.mp3': 'Tất cả đi ngủ',
+      '2-nhan-ban.mp3': 'Nhân bản',
+      '3-phan-boi.mp3': 'Phản bội',
+      '4-Soi.mp3': 'Sói',
+      '5-tien-tri.mp3': 'Tiên Tri',
+      '6-trom.mp3': 'Kẻ Trộm',
+      '7-pha-hoai.mp3': 'Phá hoại',
+      '8-say-ruou.mp3': 'Say Rượu',
+      '9-mat-ngu.mp3': 'Mất Ngủ',
+      '10-dan-thuong.mp3': 'Dân Thường',
+      '11-thuc-day.mp3': 'Thức dậy',
+      '12-sinh-doi.mp3': 'Sinh Đôi'
+    };
+    
+    // Listen for input events
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('change', saveSettings);
+      if (input.type === 'number') {
+        input.addEventListener('input', saveSettings);
+      }
+    });
+    
+    // Listen for audio ended event
+    audioPlayer.addEventListener('ended', handleSongEnd);
+    
+    // Initialize the application when the page is loaded
+    document.addEventListener('DOMContentLoaded', loadSettings);
+    
+    /**
+     * Start playing the selected roles
+     */
     function playSelected() {
-      isStopped = false;
-
-      const firstSong = { src: '1-di-ngu.mp3', delay: 5000 };
-      const lastSong = { src: '11-thuc-day.mp3', delay: 0 };
-
-      // const selectedRadio = document.querySelector('input[name="radioSongs"]:checked');
-      // const radioSong = selectedRadio
-      //   ? [{
-      //       src: selectedRadio.value,
-      //       delay: parseInt(document.getElementById(`delay${selectedRadio.id}`).value) * 1000 || 0,
-      //     }, {
-      //       src: `ngu-${selectedRadio.value}`,
-      //       delay: 0,
-      //     }]
-      //   : null;
-
-      const selectedCheckboxes = document.querySelectorAll('#songList input[type="checkbox"]:checked');
-      const checkboxSongs = Array.from(selectedCheckboxes).flatMap((checkbox) => [
-      {
-        src: checkbox.value,
-        delay: parseInt(document.getElementById(`delay${checkbox.id}`).value) * 1000 || 0,
-      },
-      {
-        src: `ngu-${checkbox.value}`,
-        delay: 0,
-      },
-    ]);
-
-      playlist = [firstSong, ...checkboxSongs, lastSong].filter((song) => song !== null);
-
+      if (isPlaying) return;
+      
+      // Create the playlist
+      createPlaylist();
+      
       if (!playlist.length) {
-        alert('Vui lòng chọn ít nhất một bài hát!');
+        currentRoleName.textContent = "Vui lòng chọn ít nhất một vai trò!";
         return;
       }
-
+      
+      // Start playback
+      isPlaying = true;
       currentSongIndex = 0;
+      updateUIForPlayback(true);
       playSong();
     }
-
+    
+    /**
+     * Create a playlist from the selected roles
+     */
+    function createPlaylist() {
+      // Fixed start and end songs
+      const firstSong = { src: '1-di-ngu.mp3', delay: 5000, name: roleNameMap['1-di-ngu.mp3'] };
+      const lastSong = { src: '11-thuc-day.mp3', delay: 0, name: roleNameMap['11-thuc-day.mp3'] };
+      
+      // Get the list of selected roles
+      const selectedRoles = document.querySelectorAll('#roleList input[type="checkbox"]:checked');
+      
+      // Create a playlist for each role
+      const roleSongs = Array.from(selectedRoles).flatMap(checkbox => {
+        const src = checkbox.value;
+        const id = checkbox.id;
+        const delayElement = document.getElementById(`delay${id}`);
+        const delaySeconds = parseInt(delayElement?.value) || 0;
+        
+        return [
+          {
+            src: src,
+            delay: 0,
+            name: roleNameMap[src] || 'Unknown'
+          },
+          {
+            src: `ngu-${src}`,
+            delay: delaySeconds * 1000,
+            name: `${roleNameMap[src] || 'Unknown'} đi ngủ`
+          }
+        ];
+      });
+      
+      // Combine into a complete playlist
+      playlist = [firstSong, ...roleSongs, lastSong];
+    }
+    
+    /**
+     * Play the current song in the playlist
+     */
     function playSong() {
-      if (currentSongIndex >= playlist.length || isStopped) {
-        alert('Danh sách phát đã kết thúc hoặc bị dừng.');
+      if (currentSongIndex >= playlist.length || !isPlaying) {
+        completePlayback();
         return;
       }
-
+      
       const currentSong = playlist[currentSongIndex];
-      audioPlayer.src = currentSong.src;
-      audioPlayer.play();
-
-      audioPlayer.onended = () => {
-        setTimeout(() => {
-          currentSongIndex++;
-          playSong();
-        }, currentSong.delay);
-      };
+      
+      try {
+        // Update UI
+        currentRoleName.textContent = currentSong.name || 'Unknown';
+        statusIndicator.classList.add('now-playing');
+        
+        // Play audio
+        audioPlayer.src = currentSong.src;
+        audioPlayer.play().catch(error => {
+          console.error('Audio playback error:', error);
+          currentRoleName.textContent = "Lỗi phát âm thanh!";
+          handleSongEnd();
+        });
+      } catch (error) {
+        console.error('Error:', error);
+        currentRoleName.textContent = "Lỗi phát âm thanh!";
+        handleSongEnd();
+      }
     }
-
+    
+    /**
+     * Handle when a song ends
+     */
+    function handleSongEnd() {
+      if (!isPlaying) return;
+      
+      const currentSong = playlist[currentSongIndex];
+      const delay = currentSong?.delay || 0;
+      
+      setTimeout(() => {
+        currentSongIndex++;
+        playSong();
+      }, delay);
+    }
+    
+    /**
+     * Stop the playlist
+     */
     function stopPlaylist() {
-      isStopped = true;
+      isPlaying = false;
       audioPlayer.pause();
       audioPlayer.currentTime = 0;
+      updateUIForPlayback(false);
     }
-
-    function savePlaylist() {
-      const selectedRadio = document.querySelector('input[name="radioSongs"]:checked')?.id || null;
-      const delays = {};
-
-      if (selectedRadio) {
-        delays[selectedRadio] = document.getElementById(`delay${selectedRadio}`).value || "0";
+    
+    /**
+     * Handle when playback completes
+     */
+    function completePlayback() {
+      isPlaying = false;
+      updateUIForPlayback(false);
+      currentRoleName.textContent = "Đã hoàn thành";
+    }
+    
+    /**
+     * Update UI based on playback status
+     */
+    function updateUIForPlayback(playing) {
+      if (playing) {
+        statusIndicator.classList.add('now-playing');
+        playButton.disabled = true;
+      } else {
+        statusIndicator.classList.remove('now-playing');
+        currentRoleName.textContent = "Chưa bắt đầu";
+        playButton.disabled = false;
       }
-
-      document.querySelectorAll('#songList input[type="checkbox"]').forEach((checkbox) => {
-        delays[checkbox.id] = document.getElementById(`delay${checkbox.id}`).value || "0";
-      });
-
-      const selectedCheckboxes = Array.from(document.querySelectorAll('#songList input[type="checkbox"]:checked')).map(
-        (checkbox) => checkbox.id
-      );
-
-      localStorage.setItem(
-        'playlist',
-        JSON.stringify({
-          selectedRadio,
-          delays,
-          selectedCheckboxes,
-        })
-      );
     }
-
-    function loadPlaylist() {
-      const data = localStorage.getItem('playlist');
-      if (!data) return;
-
-      const { selectedRadio, delays, selectedCheckboxes } = JSON.parse(data);
-
-      if (selectedRadio) {
-        document.getElementById(selectedRadio).checked = true;
+    
+    /**
+     * Save user settings to localStorage
+     */
+    function saveSettings() {
+      const settings = {
+        roles: {},
+        delays: {}
+      };
+      
+      // Save checkbox states
+      document.querySelectorAll('#roleList input[type="checkbox"]').forEach(checkbox => {
+        if (!checkbox.disabled) {
+          settings.roles[checkbox.id] = checkbox.checked;
+        }
+      });
+      
+      // Save delay values
+      document.querySelectorAll('#roleList input[type="number"]').forEach(input => {
+        settings.delays[input.id] = input.value || "0";
+      });
+      
+      localStorage.setItem('masoiSettings', JSON.stringify(settings));
+    }
+    
+    /**
+     * Load user settings from localStorage
+     */
+    function loadSettings() {
+      const settingsJson = localStorage.getItem('masoiSettings');
+      if (!settingsJson) return;
+      
+      try {
+        const settings = JSON.parse(settingsJson);
+        
+        // Restore checkbox states
+        if (settings.roles) {
+          Object.entries(settings.roles).forEach(([id, checked]) => {
+            const checkbox = document.getElementById(id);
+            if (checkbox && !checkbox.disabled) {
+              checkbox.checked = checked;
+            }
+          });
+        }
+        
+        // Restore delay values
+        if (settings.delays) {
+          Object.entries(settings.delays).forEach(([id, value]) => {
+            const input = document.getElementById(id);
+            if (input) {
+              input.value = value;
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error loading settings:', error);
       }
-
-      selectedCheckboxes.forEach((id) => {
-        const checkbox = document.getElementById(id);
-        if (checkbox) checkbox.checked = true;
-      });
-
-      Object.keys(delays).forEach((id) => {
-        const input = document.getElementById(`delay${id}`);
-        if (input) input.value = delays[id];
-      });
     }
-
-    document.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('change', savePlaylist);
-    });
-
-    loadPlaylist();
   </script>
 </body>
 </html>
